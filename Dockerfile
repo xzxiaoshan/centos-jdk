@@ -6,14 +6,14 @@ MAINTAINER xzxiaoshan <365384722@qq.com>
 WORKDIR /usr/java/
 
 #JDK版本linux_x64
+ENV JDK_TAR_NAME=jdk-8u221-linux-x64.tar.gz
 ENV JDK_VERSION=jdk1.8.0_221
 
 RUN set -x && \
-        yum install unzip -y && \
-        wget --no-check-certificate https://gitee.com/catoop/files/raw/master/${JDK_VERSION}.tar.gzaa && \
-        wget --no-check-certificate https://gitee.com/catoop/files/raw/master/${JDK_VERSION}.tar.gzab && \
-        cat ${JDK_VERSION}.tar.gza* | tar -xzv && \
-        rm -rf ${JDK_VERSION}.tar.gza*
+    yum -y install wget && \
+    wget --no-check-certificate https://temp.i86.pub:54321/files/${JDK_TAR_NAME} && \
+    tar -zxvf ${JDK_TAR_NAME} && \
+    rm -rf ${JDK_TAR_NAME}
 
 # set environment variables
 ENV JAVA_HOME /usr/java/${JDK_VERSION}
